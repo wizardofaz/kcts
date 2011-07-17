@@ -1,0 +1,575 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0110 
+i18n_type 1 
+i18n_include "gettext.h" 
+i18n_function _ 
+header_name {.h} 
+code_name {.cxx}
+decl {\#include <FL/Fl_Text_Buffer.H>} {} 
+
+Function {make_TSdialog()} {open
+} {
+  Fl_Window {} {
+    label {Kachina Test Suite} open
+    xywh {654 141 500 300} type Double
+    code0 {\#include "support.h"} visible
+  } {
+    Fl_Menu_Bar {} {open
+      xywh {0 0 500 20}
+    } {
+      Submenu {} {
+        label {&Files} open
+        xywh {0 0 62 20}
+      } {
+        MenuItem mnuOpen {
+          label {&Open}
+          callback {openFile();}
+          xywh {0 0 30 20}
+        }
+        MenuItem mnuSave {
+          label {&Save}
+          callback {saveFile();}
+          xywh {0 0 30 20}
+        }
+        MenuItem mnuSaveAs {
+          label {Save &As}
+          callback {saveFileAs();}
+          xywh {0 0 30 20} divider
+        }
+        MenuItem mnuExit {
+          label {E&xit}
+          callback {exit(0);}
+          xywh {0 0 30 20}
+        }
+      }
+      MenuItem mnuEvents {
+        label {&Events}
+        callback {debug::show();}
+        xywh {0 0 36 21}
+        code0 {\#include "debug.h"}
+      }
+      MenuItem mnuAbout {
+        label {&About}
+        callback {about();}
+        xywh {0 0 34 21}
+      }
+    }
+    Fl_Tabs {} {open
+      xywh {0 22 500 295}
+    } {
+      Fl_Group {} {
+        label Gen open
+        xywh {0 45 500 255}
+      } {
+        Fl_Group {} {open
+          xywh {10 55 480 67} box ENGRAVED_FRAME
+        } {
+          Fl_Output txtFirmware {
+            label {Firmware:}
+            xywh {90 61 54 24}
+          }
+          Fl_Output txtHardware {
+            label {Hardware:}
+            xywh {235 61 54 24}
+          }
+          Fl_Input txtSerialNumber {
+            label {Serial \#:}
+            xywh {370 61 107 24}
+          }
+          Fl_Button btnSendSerialNbr {
+            label {Set Serial}
+            callback {sendSerialNumber();}
+            tooltip {Write Serial \# to NRAM (tbd)} xywh {400 89 75 25}
+          }
+        }
+        Fl_Group {} {open
+          xywh {10 125 190 170} box ENGRAVED_FRAME
+        } {
+          Fl_Output txtRxSigLevel {
+            label {Rx Sig Level:}
+            xywh {120 135 63 24}
+          }
+          Fl_Output txtTemperature {
+            label {Temperature:}
+            xywh {120 175 63 24}
+          }
+          Fl_Output txtFwdPower {
+            label {Fwd Pwr:}
+            xywh {120 215 63 24} hide
+          }
+          Fl_Output txtRefPower {
+            label {Ref Pwr:}
+            xywh {120 256 63 24} hide
+          }
+        }
+        Fl_Button btnReadAll {
+          label {Read All}
+          callback {readAll();}
+          xywh {400 130 75 25}
+        }
+      }
+      Fl_Group {} {
+        label Smeter open
+        xywh {0 45 500 255} hide
+      } {
+        Fl_Input {sMeter[0]} {
+          label {+20 dbm:}
+          xywh {75 55 50 24} type Int
+        }
+        Fl_Input {sMeter[1]} {
+          label {+10 dbm:}
+          xywh {75 80 50 24} type Int
+        }
+        Fl_Input {sMeter[2]} {
+          label {0 dbm:}
+          xywh {75 106 50 24} type Int
+        }
+        Fl_Input {sMeter[3]} {
+          label {-10 dbm:}
+          xywh {75 132 50 24} type Int
+        }
+        Fl_Input {sMeter[4]} {
+          label {-20 dbm:}
+          xywh {75 158 50 24} type Int
+        }
+        Fl_Input {sMeter[5]} {
+          label {-30 dbm:}
+          xywh {75 184 50 24} type Int
+        }
+        Fl_Input {sMeter[6]} {
+          label {-40 dbm:}
+          xywh {75 210 50 24} type Int
+        }
+        Fl_Input {sMeter[7]} {
+          label {-50 dbm:}
+          xywh {75 236 50 24} type Int
+        }
+        Fl_Input {sMeter[8]} {
+          label {-60 dbm:}
+          xywh {204 55 50 24} type Int
+        }
+        Fl_Input {sMeter[9]} {
+          label {-70 dbm:}
+          xywh {204 80 50 24} type Int
+        }
+        Fl_Input {sMeter[10]} {
+          label {-80 dbm:}
+          xywh {204 106 50 24} type Int
+        }
+        Fl_Input {sMeter[11]} {
+          label {-90 dbm:}
+          xywh {204 132 50 24} type Int
+        }
+        Fl_Input {sMeter[12]} {
+          label {-100 dbm:}
+          xywh {204 158 50 24} type Int
+        }
+        Fl_Input {sMeter[13]} {
+          label {-110 dbm:}
+          xywh {204 184 50 24} type Int
+        }
+        Fl_Input {sMeter[14]} {
+          label {-120 dbm:}
+          xywh {204 210 50 24} type Int
+        }
+        Fl_Input {sMeter[15]} {
+          label {-130 dbm:}
+          xywh {204 236 50 24} type Int
+        }
+        Fl_Button btnReadSmeter {
+          label Read
+          callback {readSMeterData();}
+          tooltip {Read NRAM values from rig.} xywh {5 266 75 24}
+        }
+        Fl_Button btnSetSmeterData {
+          label Write
+          callback {sendSMeterData();}
+          tooltip {Write values to rig NRAM} xywh {92 266 75 24}
+        }
+        Fl_Button btnPerformSMeterCalibration {
+          label Calibrate
+          callback {performSMeterCalibration();}
+          tooltip {Perform Smeter Calibration} xywh {180 266 75 24}
+        }
+        Fl_Box pltSMeter {
+          xywh {260 55 230 240} box DOWN_BOX color 7 selection_color 7
+          code0 {\#include "XYplot.h"}
+          class XYplot
+        }
+      }
+      Fl_Group {} {
+        label FreqRef open
+        xywh {0 45 500 255} hide
+      } {
+        Fl_Input {freqRef[0]} {
+          xywh {10 50 48 24}
+        }
+        Fl_Input {freqRef[1]} {
+          xywh {60 50 48 24}
+        }
+        Fl_Input {freqRef[2]} {
+          xywh {111 50 48 24}
+        }
+        Fl_Input {freqRef[3]} {
+          xywh {162 50 48 24}
+        }
+        Fl_Input {freqRef[4]} {
+          xywh {212 50 48 24}
+        }
+        Fl_Input {freqRef[5]} {
+          xywh {263 50 48 24}
+        }
+        Fl_Input {freqRef[6]} {
+          xywh {314 50 48 24}
+        }
+        Fl_Input {freqRef[7]} {
+          xywh {365 50 48 24}
+        }
+        Fl_Input {freqRef[8]} {
+          xywh {10 75 48 24}
+        }
+        Fl_Input {freqRef[9]} {
+          xywh {60 75 48 24}
+        }
+        Fl_Input {freqRef[10]} {
+          xywh {111 75 48 24}
+        }
+        Fl_Input {freqRef[11]} {
+          xywh {162 75 48 24}
+        }
+        Fl_Input {freqRef[12]} {
+          xywh {212 75 48 24}
+        }
+        Fl_Input {freqRef[13]} {
+          xywh {263 75 48 24}
+        }
+        Fl_Input {freqRef[14]} {
+          xywh {314 75 48 24}
+        }
+        Fl_Input {freqRef[15]} {
+          xywh {365 75 48 24}
+        }
+        Fl_Input {freqRef[16]} {
+          xywh {10 100 48 24}
+        }
+        Fl_Input {freqRef[17]} {
+          xywh {60 100 48 24}
+        }
+        Fl_Input {freqRef[18]} {
+          xywh {111 100 48 24}
+        }
+        Fl_Input {freqRef[19]} {
+          xywh {162 100 48 24}
+        }
+        Fl_Input {freqRef[20]} {
+          xywh {212 100 48 24}
+        }
+        Fl_Input {freqRef[21]} {
+          xywh {263 100 48 24}
+        }
+        Fl_Input {freqRef[22]} {
+          xywh {314 100 48 24}
+        }
+        Fl_Input {freqRef[23]} {
+          xywh {365 100 48 24}
+        }
+        Fl_Input {freqRef[24]} {
+          xywh {10 125 48 24}
+        }
+        Fl_Input {freqRef[25]} {
+          xywh {60 125 48 24}
+        }
+        Fl_Input {freqRef[26]} {
+          xywh {111 125 48 24}
+        }
+        Fl_Input {freqRef[27]} {
+          xywh {162 125 48 24}
+        }
+        Fl_Input {freqRef[28]} {
+          xywh {212 125 48 24}
+        }
+        Fl_Input {freqRef[29]} {
+          xywh {263 125 48 24}
+        }
+        Fl_Input {freqRef[30]} {
+          xywh {314 125 48 24}
+        }
+        Fl_Input {freqRef[31]} {
+          xywh {365 125 48 24}
+        }
+        Fl_Button btnReadFreqRefData {
+          label Read
+          callback {readFreqRefData();}
+          tooltip {Read NRAM values from rig.} xywh {418 50 75 24}
+        }
+        Fl_Button btnSetFreqRefData {
+          label Write
+          callback {sendFreqRefData();}
+          tooltip {Write values to rig NRAM} xywh {418 87 75 24}
+        }
+        Fl_Box pltFreqRef {
+          label {Plot Goes Here}
+          xywh {10 152 480 146} box DOWN_BOX color 7 selection_color 7
+          class XYplot
+        }
+        Fl_Button btnFreqRefCalibrate {
+          label Calibrate
+          callback {performFreqRefCalibration();}
+          tooltip {Perform Freq Ref Calibration} xywh {418 124 75 24}
+        }
+      }
+      Fl_Group {} {
+        label Phase open
+        xywh {0 45 500 255} hide
+      } {
+        Fl_Input {phase[0]} {
+          label 1
+          xywh {20 54 40 24}
+        }
+        Fl_Input {phase[1]} {
+          label 2
+          xywh {81 54 40 24}
+        }
+        Fl_Input {phase[2]} {
+          label 3
+          xywh {142 54 40 24}
+        }
+        Fl_Input {phase[3]} {
+          label 4
+          xywh {204 54 40 24}
+        }
+        Fl_Input {phase[4]} {
+          label 5
+          xywh {265 54 40 24}
+        }
+        Fl_Input {phase[5]} {
+          label 6
+          xywh {327 54 40 24}
+        }
+        Fl_Input {phase[06]} {
+          label 7
+          xywh {388 54 40 24}
+        }
+        Fl_Input {phase[7]} {
+          label 8
+          xywh {450 54 40 24}
+        }
+        Fl_Input {phase[8]} {
+          label 9
+          xywh {20 83 40 23}
+        }
+        Fl_Input {phase[9]} {
+          label 10
+          xywh {81 82 40 24}
+        }
+        Fl_Input {phase[10]} {
+          label 11
+          xywh {142 82 40 24}
+        }
+        Fl_Input {phase[11]} {
+          label 12
+          xywh {204 82 40 24}
+        }
+        Fl_Input {phase[12]} {
+          label 13
+          xywh {265 82 40 24}
+        }
+        Fl_Input {phase[13]} {
+          label 14
+          xywh {327 82 40 24}
+        }
+        Fl_Input {phase[14]} {
+          label 15
+          xywh {388 82 40 24}
+        }
+        Fl_Input {phase[15]} {
+          label 16
+          xywh {450 82 40 24}
+        }
+        Fl_Box pltPhase {
+          label {Plot Goes Here}
+          xywh {10 136 480 154} box DOWN_BOX color 7 selection_color 7
+          class XYplot
+        }
+        Fl_Button btnReadPhaseData {
+          label Read
+          callback {readPhaseData();}
+          tooltip {Read NRAM values from rig.} xywh {75 109 75 24}
+        }
+        Fl_Button btnSetPhaseData {
+          label Write
+          callback {sendPhaseData();}
+          tooltip {Write values to rig NRAM} xywh {220 109 75 24}
+        }
+        Fl_Button btnPhaseCalibrate {
+          label Calibrate
+          callback {performPhaseCalibration();}
+          tooltip {Perform Phase Calibration} xywh {365 109 75 24}
+        }
+      }
+      Fl_Group {} {
+        label Carrier open
+        xywh {0 45 500 255} hide
+      } {
+        Fl_Button btnReadCarrierData {
+          label Read
+          callback {readCarrierData();}
+          tooltip {Read NRAM value from rig.} xywh {200 65 69 24}
+        }
+        Fl_Button btnSetCarrierData {
+          label Write
+          callback {sendCarrierData();}
+          tooltip {Write value to rig NRAM} xywh {307 65 69 24}
+        }
+        Fl_Input valCarrierBalance {
+          label {Carrier Balance:}
+          xywh {120 65 60 25} type Int
+        }
+        Fl_Button btnCarrierBalance {
+          label Balance
+          callback {performCarrierBalance();}
+          tooltip {Perform Carrier Balance} xywh {415 65 69 24}
+        }
+      }
+      Fl_Group {} {
+        label DVM open
+        xywh {0 45 500 255} hide
+      } {
+        Fl_Output txtAGC {
+          label {AGC:}
+          xywh {105 71 60 24} deactivate
+        }
+        Fl_Output txtLockDet1 {
+          label {Lock Det 1:}
+          xywh {105 111 60 24} deactivate
+        }
+        Fl_Output txtLockDet2 {
+          label {Lock Det 2:}
+          xywh {105 151 60 24} deactivate
+        }
+        Fl_Output txtFwdPwr {
+          label {Fwd Pwr:}
+          xywh {105 191 60 24} deactivate
+        }
+        Fl_Output txtRefPwr {
+          label {Ref Pwr:}
+          xywh {105 231 60 24} deactivate
+        }
+        Fl_Output txtPhaseDet {
+          label {Phase Det:}
+          xywh {310 72 60 24} deactivate
+        }
+        Fl_Output txtTxAudio {
+          label {Tx Audio:}
+          xywh {310 111 60 24} deactivate
+        }
+        Fl_Output txtTempA {
+          label {Temp A:}
+          xywh {310 151 60 24} deactivate
+        }
+        Fl_Output txtTempB {
+          label {Temp B:}
+          xywh {310 191 60 24} deactivate
+        }
+        Fl_Output txtTCXO {
+          label {TCXO:}
+          xywh {310 231 60 24}
+        }
+        Fl_Button btnReadAGC {
+          label Read
+          callback {readAGC();}
+          xywh {175 71 49 24} hide
+        }
+        Fl_Button btnReadLockDet1 {
+          label Read
+          callback {readLockDet1();}
+          xywh {175 111 49 24} hide
+        }
+        Fl_Button btnReadLockDet2 {
+          label Read
+          callback {readLockDet2();}
+          xywh {175 151 49 24} hide
+        }
+        Fl_Button btnReadFwdPwr {
+          label Read
+          callback {readFwdPwr();}
+          xywh {175 191 49 24} hide
+        }
+        Fl_Button btnReadRefPwr {
+          label Read
+          callback {readRefPwr();}
+          xywh {175 231 49 24} hide
+        }
+        Fl_Button btnPhaseDet {
+          label Read
+          callback {readPhaseDet();}
+          xywh {380 71 49 24} hide
+        }
+        Fl_Button btnTxAudio {
+          label Read
+          callback {readTxAudio();}
+          xywh {380 111 49 24} hide
+        }
+        Fl_Button btnReadTempA {
+          label Read
+          callback {readTempA();}
+          xywh {380 151 49 24} hide
+        }
+        Fl_Button btnReadTempB {
+          label Read
+          callback {readTempB();}
+          xywh {380 191 49 24} hide
+        }
+        Fl_Button btnReadTCXO {
+          label Read
+          callback {readTCXO();}
+          tooltip {Read NRAM value from rig.} xywh {380 231 49 24}
+        }
+      }
+      Fl_Group {} {
+        label OnTime open
+        xywh {0 45 500 255} hide deactivate
+      } {
+        Fl_Output txtOpHours {
+          label {output:}
+          xywh {125 65 75 24}
+        }
+        Fl_Button btnReadOnTimeData {
+          label Read
+          callback {readOnTimeData();}
+          tooltip {Read NRAM value from rig.} xywh {235 66 69 24}
+        }
+        Fl_Button btnClearOnTimeData {
+          label {Clear Data}
+          callback {clearOnTimeData();}
+          tooltip {Reset On Time to zero} xywh {360 66 75 24}
+        }
+      }
+      Fl_Group {} {
+        label Fault open
+        xywh {0 45 500 255} hide deactivate
+      } {}
+    }
+  }
+} 
+
+Function {CommsDialog()} {} {
+  Fl_Window {} {
+    label Select open
+    xywh {635 501 323 104} type Double box UP_BOX hide modal
+  } {
+    Fl_Choice selectCommPort {
+      label {Port:} open
+      xywh {34 60 175 21} down_box BORDER_BOX align 5
+    } {}
+    Fl_Return_Button btnOkCommsDialog {
+      label OK
+      callback {cbOkCommsDialog();}
+      xywh {218 60 68 21}
+    }
+    Fl_Box {} {
+      label {Select the KC505 serial port}
+      xywh {5 3 312 41}
+    }
+  }
+} 

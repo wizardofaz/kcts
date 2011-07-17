@@ -1,0 +1,6 @@
+#include <windows.h> // include for version info constants
+
+#include "kctsrc.h"
+
+IDI_ICON ICON DISCARDABLE "kcts.ico"
+

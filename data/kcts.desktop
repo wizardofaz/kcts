@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=kcts
+GenericName=Amateur Radio Data Encapsulation
+Comment=Amateur Radio Communications
+Exec=kcts
+Icon=kcts
+Terminal=false
+Type=Application
+Categories=Network;HamRadio;
