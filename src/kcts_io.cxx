@@ -148,42 +148,26 @@ bool sendData (char *str, unsigned char *buff, int nbr)
 	int cmdlen = str[0];
 	int buffsize = cmdlen + 2 + nbr;
 	unsigned char sendbuff[buffsize + 1];
-//	unsigned char retbuff[3];
-	
-//	busy = true;
-	memset(sendbuff, 0, buffsize+1);
-// create command string	
-	sendbuff[len++] = STX;
-	for (int n = 1; n <= cmdlen; n++) sendbuff[len++] = str[n];
-	sendbuff[len++] = ETX;
+	unsigned char retbuff[3];
+	bool ret = true;
 
+	memset(sendbuff, 0, buffsize+1);
+
+// create command string
+	sendbuff[len++] = STX;
+	for (int n = 1; n <= cmdlen; n++)
+		sendbuff[len++] = str[n];
+	sendbuff[len++] = ETX;
 	for (int n = 0; n < nbr; n++)
 		sendbuff[len++] = buff[n];
 
-LOG_WARN("%s\n", str2hex(sendbuff, 2 + nbr + cmdlen));
+	LOG_WARN("%s", str2hex(sendbuff, len));
 return true;
-/*
-	char prtbuff[len * 3 + 2];
-	char sData[4];
-	strcpy(prtbuff,"<stx> ");
-	snprintf(sData, sizeof(sData), "%c ", sendbuff[1]); 
-	strcat(prtbuff, sData);
-	for (int i = cmdlen + 2; i < len; i++) {
-		snprintf(sData, sizeof(sData), "%02X ", sendbuff[i]);
-		strcat(prtbuff, sData);
-	}
-	strcat(prtbuff, "<etx>\n");
-
-	strcat(prtbuff,"\n");
-	LOG_WARN("%s", prtbuff);
-
-//	busy = false;
-
-//	return true;
 
 	int nret, loopcnt;
-	char szVal[20];
-	
+
+	pthread_mutex_lock(&mutex_serial);
+
 	for (int i = 0; i < MAXTRIES; i++) {
 		nret = kcts_serial.WriteBuffer ((char *)sendbuff, len); // write error, retry
 		if (nret != len)
@@ -194,24 +178,24 @@ return true;
 			nret = kcts_serial.ReadBuffer ((char *)retbuff, 1);
 			if (retbuff[0] == 0xFF) { // Kachina accepted the data
 				LOG_WARN("%s","[FF]");
-				busy = false;
-				return true;
+				ret = true;
+				goto send_exit;
 			}
 			if (retbuff[0] == 0xFE) { // Kachina rejected the data
 				LOG_WARN("%s", "[FE]");
-				break;
-			}
-			if (test) {
-				snprintf(szVal, sizeof(szVal), "[%02X]", retbuff[0]);
-				LOG_WARN("%s", szVal);
+				ret = false;
+				goto send_exit;
 			}
 			commstack.push(retbuff[0]); // telemetry data
-		} while (++loopcnt < LOOPS);		
+		} while (++loopcnt < LOOPS);
 	}
 	LOG_ERROR("%s", "Failed\n");
-//	busy = false;
-	return false;
-*/
+	ret = false;
+
+send_exit:
+	pthread_mutex_unlock(&mutex_serial);
+
+	return ret;
 }
 
 bool setXcvrNOOP()
