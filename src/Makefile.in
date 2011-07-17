@@ -67,7 +67,7 @@ am__kcts_SOURCES_DIST = kcts.rc include/kctsrc.h mingw.c \
 	include/icons.h include/pixmaps.h include/IOspec.h \
 	include/kcts.h include/kcts_io.h include/kctsdialog.h \
 	include/serialcomm.h include/support.h include/status.h \
-	include/util.h include/XYPlot.h
+	include/util.h include/XYplot.h
 am__objects_1 = kcts.$(OBJEXT) kcts-mingw.$(OBJEXT)
 @HAVE_WINDRES_TRUE@@MINGW32_TRUE@am__objects_2 = $(am__objects_1)
 am_kcts_OBJECTS = $(am__objects_2) kcts-main.$(OBJEXT) \
@@ -260,7 +260,7 @@ kcts_SOURCES = $(am__append_1) main.cxx IOspec.cxx kcts_io.cxx \
 	include/icons.h include/pixmaps.h include/IOspec.h \
 	include/kcts.h include/kcts_io.h include/kctsdialog.h \
 	include/kctsrc.h include/serialcomm.h include/support.h \
-	include/status.h include/util.h include/XYPlot.h
+	include/status.h include/util.h include/XYplot.h
 
 # Sources that are generated,
 BUILT_SOURCES = 

@@ -143,7 +143,7 @@ kcts_SOURCES += \
 	include/support.h \
 	include/status.h \
 	include/util.h \
-	include/XYPlot.h 
+	include/XYplot.h 
 
 # Additional source files that are distributed
 EXTRA_DIST = \
