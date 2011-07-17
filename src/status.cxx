@@ -16,7 +16,6 @@
 
 #include "kcts.h"
 #include "IOspec.h"
-#include "test.h"
 #include "support.h"
 #include "cstack.h"
 #include "kcts_io.h"

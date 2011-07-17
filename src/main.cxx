@@ -45,7 +45,6 @@
 #include "kcts.h"
 #include "debug.h"
 #include "gettext.h"
-#include "font_browser.h"
 
 int parse_args(int argc, char **argv, int& idx);
 

@@ -6,7 +6,7 @@
 #include "IOspec.h"
 #include "support.h"
 #include "cstack.h"
-#include "k_io.h"
+#include "kcts_io.h"
 #include "debug.h"
 
 using namespace std;
