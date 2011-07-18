@@ -273,8 +273,10 @@ void cbOkCommsDialog()
 	ttyport =  commPortTable[commportnbr];
 	if (ttyport == "TEST")
 		kcts_serial.ClosePort();
-	else if (startComms(ttyport.c_str(), 9600) == 0)
+	else if (startComms(ttyport.c_str(), 9600) == 0) {
 		fl_message("%s not available", ttyport.c_str());
+		exit(1);
+	}
 
 
 }
@@ -396,12 +398,6 @@ void * watchdog_thread_loop(void *d)
 void startProcessing(void *d)
 {
 	setCommsPort();
-	if (startComms(ttyport.c_str(), 9600) == 0) {
-		char msg[30];
-		snprintf(msg, sizeof(msg), "%s not available", ttyport.c_str());
-		fl_message("%s", msg);
-		exit(1);
-	}
 
 	watchdog_thread = new pthread_t;
 	if (pthread_create(watchdog_thread, NULL, watchdog_thread_loop, NULL)) {
