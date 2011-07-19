@@ -413,6 +413,7 @@ void startProcessing(void *d)
 	Fl::add_idle(parseTelemetry);
 
 	readKachinaVersion();
+	debug::show();
 }
 
 void cbExit()

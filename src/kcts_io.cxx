@@ -162,7 +162,10 @@ bool sendData (char *str, unsigned char *buff, int nbr)
 		sendbuff[len++] = buff[n];
 
 	LOG_WARN("%s", str2hex(sendbuff, len));
-return true;
+
+	int yes = fl_choice("Confirm writing data to xcvr", "No!!", "Yes", NULL);
+	if (yes == 0)
+		return true;
 
 	int nret, loopcnt;
 
@@ -177,12 +180,14 @@ return true;
 			memset(retbuff, 0, 3);
 			nret = kcts_serial.ReadBuffer ((char *)retbuff, 1);
 			if (retbuff[0] == 0xFF) { // Kachina accepted the data
-				LOG_WARN("%s","[FF]");
+				LOG_WARN("%s","[FF] accepted");
+				fl_alert("Data accepted");
 				ret = true;
 				goto send_exit;
 			}
 			if (retbuff[0] == 0xFE) { // Kachina rejected the data
-				LOG_WARN("%s", "[FE]");
+				LOG_WARN("%s", "[FE] rejected");
+				fl_alert("Data rejected");
 				ret = false;
 				goto send_exit;
 			}
@@ -190,6 +195,7 @@ return true;
 		} while (++loopcnt < LOOPS);
 	}
 	LOG_ERROR("%s", "Failed\n");
+	fl_alert("Send data failed");
 	ret = false;
 
 send_exit:
