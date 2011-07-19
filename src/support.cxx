@@ -589,10 +589,10 @@ void readPhaseData()
 			snprintf(line, sizeof(line), "%d", data[j]);
 			phase[j]->value(line);
 			xvals[j] = j;
-			yvals[j] = data[j];
+			yvals[j] = data[j] > 127 ? data[j] - 256 : data[j];
 		}
 		pltPhase->xMin(0.0); pltPhase->xMax(15.0);
-		pltPhase->yMin(0); pltPhase->yMax(256);
+		pltPhase->yMin(-128); pltPhase->yMax(128);
 		pltPhase->plotXY( xvals, yvals, 16 );
 	}
 	pltPhase->redraw();
@@ -805,13 +805,16 @@ void openFile()
 
 	input >> text;
 	for (int i = 0; i < 16; i++) {
+		int val;
 		input >> text;
 		phase[i]->value(text);
 		xvals[i] = i;
-		yvals[i] = atol(text);
+		val = atol(text);
+		val = val > 128 ? val - 256 : val;
+		yvals[i] = val;
 	}
-	pltPhase->xMin(0.0); pltPhase->xMax(16.0);
-	pltPhase->yMin(0.0); pltPhase->yMax(256.0);
+	pltPhase->xMin(0.0); pltPhase->xMax(15.0);
+	pltPhase->yMin(-128); pltPhase->yMax(128);
 	pltPhase->plotXY( xvals, yvals, 16 );
 	pltPhase->redraw();
 
