@@ -762,7 +762,9 @@ char filename[200] = "";
 
 void openFile()
 {
-	char *fname = fl_file_chooser( "Select input file", "*.txt", "SRAM.txt");
+	string defaultname = homedir;
+	defaultname.append("SRAM.txt");
+	char *fname = fl_file_chooser( "Select input file", "*.txt", defaultname.c_str());
 	char text[80];
 	double xvals[32], yvals[32];
 
@@ -827,9 +829,11 @@ void openFile()
 
 void saveFile()
 {
+	string defaultname = homedir;
+	defaultname.append("SRAM.txt");
 	char *fname;
 	if (filename[0] == 0) {
-		fname = fl_file_chooser( "Select save file", "*.txt", "SRAM.txt");
+		fname = fl_file_chooser( "Select save file", "*.txt", defaultname.c_str());
 		if (fname != NULL)
 		strcpy(filename, fname);
 	}
@@ -860,7 +864,7 @@ void saveFile()
 void saveFileAs()
 {
 	char *fname;
-	fname = fl_file_chooser( "Select save as file", "*.txt", "SRAM.txt");
+	fname = fl_file_chooser( "Select save as file", "*.txt", homedir.c_str());
 	if (fname != NULL)
 		strcpy(filename, fname);
 	ofstream output(filename);
