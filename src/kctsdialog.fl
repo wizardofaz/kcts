@@ -48,17 +48,27 @@ Function {make_TSdialog()} {open
         xywh {0 0 36 21}
         code0 {\#include "debug.h"}
       }
-      MenuItem mnuAbout {
-        label {&About}
-        callback {about();}
-        xywh {0 0 34 21}
+      Submenu mnuHelp {
+        label {&Help} open
+        xywh {0 0 70 21}
+      } {
+        MenuItem mnuOnLineHelp {
+          label {On-line help}
+          callback {visit_URL((void *)("http://www.w1hkj.com/kcts-help/index.html"));} selected
+          xywh {0 0 36 21} divider
+        }
+        MenuItem mnuAbout {
+          label {&About}
+          callback {about();}
+          xywh {0 0 34 21}
+        }
       }
     }
     Fl_Tabs {} {open
       xywh {0 22 500 295}
     } {
       Fl_Group {} {
-        label Gen open selected
+        label Gen open
         xywh {0 45 500 255}
       } {
         Fl_Group {} {open

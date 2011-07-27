@@ -24,6 +24,10 @@ static void cb_mnuEvents(Fl_Menu_*, void*) {
   debug::show();
 }
 
+static void cb_mnuOnLineHelp(Fl_Menu_*, void*) {
+  visit_URL((void *)("http://www.w1hkj.com/kcts-help/index.html"));
+}
+
 static void cb_mnuAbout(Fl_Menu_*, void*) {
   about();
 }
@@ -36,7 +40,10 @@ Fl_Menu_Item menu_[] = {
  {_("E&xit"), 0,  (Fl_Callback*)cb_mnuExit, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
  {0,0,0,0,0,0,0,0,0},
  {_("&Events"), 0,  (Fl_Callback*)cb_mnuEvents, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
+ {_("&Help"), 0,  0, 0, 64, FL_NORMAL_LABEL, 0, 14, 0},
+ {_("On-line help"), 0,  (Fl_Callback*)cb_mnuOnLineHelp, 0, 128, FL_NORMAL_LABEL, 0, 14, 0},
  {_("&About"), 0,  (Fl_Callback*)cb_mnuAbout, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
+ {0,0,0,0,0,0,0,0,0},
  {0,0,0,0,0,0,0,0,0}
 };
 

@@ -68,7 +68,9 @@ extern Fl_Menu_Item menu_[];
 #define mnuSaveAs (menu_+3)
 #define mnuExit (menu_+4)
 #define mnuEvents (menu_+6)
-#define mnuAbout (menu_+7)
+#define mnuHelp (menu_+7)
+#define mnuOnLineHelp (menu_+8)
+#define mnuAbout (menu_+9)
 #include <FL/Fl_Choice.H>
 extern Fl_Choice *selectCommPort;
 #include <FL/Fl_Return_Button.H>
