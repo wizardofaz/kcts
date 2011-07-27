@@ -15,6 +15,7 @@
 #include "config.h"
 #include "status.h"
 #include "debug.h"
+#include "icons.h"
 
 using namespace std;
 
@@ -521,9 +522,15 @@ void sendSMeterData()
 
 }
 
+void calibrate(string what, string cmd)
+{
+	fl_alert2("Under development\n%s\nCommand string \"%c %s\"", what.c_str(), cmd[1], str2hex(&cmd[2], cmd[0]-1));
+}
+
 void performSMeterCalibration()
 {
-	sendCommand(cmdK_PSMTR);
+	calibrate("S-meter", cmdK_PSMTR);
+//	sendCommand(cmdK_PSMTR);
 }
 
 void readFreqRefData()
@@ -569,7 +576,8 @@ void sendFreqRefData()
 
 void performFreqRefCalibration()
 {
-	sendCommand(cmdK_PFCAL);
+	calibrate("Frequency Referency", cmdK_PFCAL);
+//	sendCommand(cmdK_PFCAL);
 }
 
 void readPhaseData()
@@ -615,7 +623,8 @@ void sendPhaseData()
 
 void performPhaseCalibration()
 {
-	sendCommand(cmdK_PPCAL);
+	calibrate("Phase Calibration", cmdK_PPCAL);
+//	sendCommand(cmdK_PPCAL);
 }
 
 
@@ -643,7 +652,8 @@ void sendCarrierData()
 
 void performCarrierBalance()
 {
-	sendCommand(cmdK_PCBAL);
+	calibrate("Carrier Balance", cmdK_PCBAL);
+//	sendCommand(cmdK_PCBAL);
 }
 
 void readOnTimeData()
