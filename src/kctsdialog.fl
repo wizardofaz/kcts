@@ -58,7 +58,7 @@ Function {make_TSdialog()} {open
       xywh {0 22 500 295}
     } {
       Fl_Group {} {
-        label Gen open
+        label Gen open selected
         xywh {0 45 500 255}
       } {
         Fl_Group {} {open
@@ -526,29 +526,6 @@ Function {make_TSdialog()} {open
           tooltip {Read NRAM value from rig.} xywh {380 231 49 24}
         }
       }
-      Fl_Group {} {
-        label OnTime open
-        xywh {0 45 500 255} hide deactivate
-      } {
-        Fl_Output txtOpHours {
-          label {output:}
-          xywh {125 65 75 24}
-        }
-        Fl_Button btnReadOnTimeData {
-          label Read
-          callback {readOnTimeData();}
-          tooltip {Read NRAM value from rig.} xywh {235 66 69 24}
-        }
-        Fl_Button btnClearOnTimeData {
-          label {Clear Data}
-          callback {clearOnTimeData();}
-          tooltip {Reset On Time to zero} xywh {360 66 75 24}
-        }
-      }
-      Fl_Group {} {
-        label Fault open
-        xywh {0 45 500 255} hide deactivate
-      } {}
     }
   }
 } 

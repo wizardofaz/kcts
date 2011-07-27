@@ -656,33 +656,6 @@ void performCarrierBalance()
 //	sendCommand(cmdK_PCBAL);
 }
 
-void readOnTimeData()
-{
-	unsigned char data[6];
-	long int hours;
-	int chksum = 0;
-	char szHrs[11];
-
-	for (int i = 0; i < 6; data[i++] = 0);
-
-	string cmd = cmdK_cmdF;
-	RequestData ((char *)cmd.c_str(), data, 6);
-	LOG_WARN("%s", retval.c_str());
-
-	for (int i = 0; i < 4; i++)
-			chksum += data[i];
-	if (chksum == 256*data[4]+data[5]) {
-		hours = (((data[0]*256 + data[1])*256) + data[2])*256 + data[3];
-		snprintf(szHrs, sizeof(szHrs), "%10ld", hours);
-		txtOpHours->value(szHrs);
-	}
-
-}
-
-void clearOnTimeData()
-{
-}
-
 char * readDVM( char *cmd )
 {
 	unsigned char cDVM[2];

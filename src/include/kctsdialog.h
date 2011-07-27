@@ -61,9 +61,6 @@ extern Fl_Button *btnTxAudio;
 extern Fl_Button *btnReadTempA;
 extern Fl_Button *btnReadTempB;
 extern Fl_Button *btnReadTCXO;
-extern Fl_Output *txtOpHours;
-extern Fl_Button *btnReadOnTimeData;
-extern Fl_Button *btnClearOnTimeData;
 Fl_Double_Window* make_TSdialog();
 extern Fl_Menu_Item menu_[];
 #define mnuOpen (menu_+1)

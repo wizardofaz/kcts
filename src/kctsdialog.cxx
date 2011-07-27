@@ -3,8 +3,6 @@
 #include "gettext.h"
 #include "kctsdialog.h"
 #include <FL/Fl_Text_Buffer.H>
-static Fl_Text_Buffer *bufStyle; 
-static Fl_Text_Buffer *bufRigSerial; 
 
 static void cb_mnuOpen(Fl_Menu_*, void*) {
   openFile();
@@ -232,20 +230,6 @@ Fl_Button *btnReadTCXO=(Fl_Button *)0;
 
 static void cb_btnReadTCXO(Fl_Button*, void*) {
   readTCXO();
-}
-
-Fl_Output *txtOpHours=(Fl_Output *)0;
-
-Fl_Button *btnReadOnTimeData=(Fl_Button *)0;
-
-static void cb_btnReadOnTimeData(Fl_Button*, void*) {
-  readOnTimeData();
-}
-
-Fl_Button *btnClearOnTimeData=(Fl_Button *)0;
-
-static void cb_btnClearOnTimeData(Fl_Button*, void*) {
-  clearOnTimeData();
 }
 
 Fl_Double_Window* make_TSdialog() {
@@ -605,26 +589,6 @@ Fl_Double_Window* make_TSdialog() {
           btnReadTCXO->tooltip(_("Read NRAM value from rig."));
           btnReadTCXO->callback((Fl_Callback*)cb_btnReadTCXO);
         } // Fl_Button* btnReadTCXO
-        o->end();
-      } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(0, 45, 500, 255, _("OnTime"));
-        o->hide();
-        o->deactivate();
-        { txtOpHours = new Fl_Output(125, 65, 75, 24, _("output:"));
-        } // Fl_Output* txtOpHours
-        { btnReadOnTimeData = new Fl_Button(235, 66, 69, 24, _("Read"));
-          btnReadOnTimeData->tooltip(_("Read NRAM value from rig."));
-          btnReadOnTimeData->callback((Fl_Callback*)cb_btnReadOnTimeData);
-        } // Fl_Button* btnReadOnTimeData
-        { btnClearOnTimeData = new Fl_Button(360, 66, 75, 24, _("Clear Data"));
-          btnClearOnTimeData->tooltip(_("Reset On Time to zero"));
-          btnClearOnTimeData->callback((Fl_Callback*)cb_btnClearOnTimeData);
-        } // Fl_Button* btnClearOnTimeData
-        o->end();
-      } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(0, 45, 500, 255, _("Fault"));
-        o->hide();
-        o->deactivate();
         o->end();
       } // Fl_Group* o
       o->end();
