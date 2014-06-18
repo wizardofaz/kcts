@@ -10,9 +10,9 @@ AC_PREREQ([2.63])
 
 dnl major and minor must be integers; patch may
 dnl contain other characters or be empty
-m4_define(kcts_MAJOR,  [0])
-m4_define(kcts_MINOR,  [9])
-m4_define(kcts_PATCH,  [.01])
+m4_define(kcts_MAJOR,  [1])
+m4_define(kcts_MINOR,  [0])
+m4_define(kcts_PATCH,  [.0])
 
 AC_INIT([kcts], kcts_MAJOR.kcts_MINOR[]kcts_PATCH, [w1hkj AT w1hkj DOT com])
 
