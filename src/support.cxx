@@ -206,6 +206,8 @@ void initCommPortTable()
 #  define PATH_MAX 1024
 #endif
 
+#  include <glob.h>
+
 void initCommPortTable()
 {
 	clear_combos();
@@ -278,8 +280,6 @@ void cbOkCommsDialog()
 		fl_message("%s not available", ttyport.c_str());
 		exit(1);
 	}
-
-
 }
 
 void setCommsPort()
@@ -761,11 +761,11 @@ void openFile()
 		return;
 	}
 
-	input >> text;
+	input >> text; //Serial_number:
 	input >> text;
 	txtSerialNumber->value(text);
 
-	input >> text;
+	input >> text; //Freq_ref_data:
 	for (int i = 0; i < 16; i++) {
 		input >> text;
 		sMeter[i]->value(text);
@@ -777,7 +777,7 @@ void openFile()
 	pltSMeter->plotXY(xvals, yvals, 16);
 	pltSMeter->redraw();
 
-	input >> text;
+	input >> text; //Freq_ref_data:
 	for (int i = 0; i < 32; i++) {
 		input >> text;
 		freqRef[i]->value(text);
@@ -789,7 +789,7 @@ void openFile()
 	pltFreqRef->plotXY ( xvals, yvals, 32 );
 	pltFreqRef->redraw();
 
-	input >> text;
+	input >> text; //Phase_data:
 	for (int i = 0; i < 16; i++) {
 		int val;
 		input >> text;
@@ -804,7 +804,7 @@ void openFile()
 	pltPhase->plotXY( xvals, yvals, 16 );
 	pltPhase->redraw();
 
-	input >> text;
+	input >> text; //Carrier_data:
 	input >> text;
 	valCarrierBalance->value(text);
 

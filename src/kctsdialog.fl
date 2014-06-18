@@ -11,8 +11,8 @@ Function {make_TSdialog()} {open
 } {
   Fl_Window {} {
     label {Kachina Test Suite} open
-    xywh {654 141 500 300} type Double
-    code0 {\#include "support.h"} visible
+    xywh {654 141 500 300} type Double hide
+    code0 {\#include "support.h"}
   } {
     Fl_Menu_Bar {} {open
       xywh {0 0 500 20}
@@ -54,7 +54,7 @@ Function {make_TSdialog()} {open
       } {
         MenuItem mnuOnLineHelp {
           label {On-line help}
-          callback {visit_URL((void *)("http://www.w1hkj.com/kcts-help/index.html"));} selected
+          callback {visit_URL((void *)("http://www.w1hkj.com/kcts-help/index.html"));}
           xywh {0 0 36 21} divider
         }
         MenuItem mnuAbout {
@@ -69,7 +69,7 @@ Function {make_TSdialog()} {open
     } {
       Fl_Group {} {
         label Gen open
-        xywh {0 45 500 255}
+        xywh {0 45 500 255} hide
       } {
         Fl_Group {} {open
           xywh {10 55 480 67} box ENGRAVED_FRAME
@@ -209,7 +209,7 @@ Function {make_TSdialog()} {open
       }
       Fl_Group {} {
         label FreqRef open
-        xywh {0 45 500 255} hide
+        xywh {0 45 500 255}
       } {
         Fl_Input {freqRef[0]} {
           xywh {10 50 48 24}
@@ -318,7 +318,7 @@ Function {make_TSdialog()} {open
           tooltip {Write values to rig NRAM} xywh {418 87 75 24}
         }
         Fl_Box pltFreqRef {
-          label {Plot Goes Here}
+          label {Plot Goes Here} selected
           xywh {10 152 480 146} box DOWN_BOX color 7 selection_color 7
           class XYplot
         }

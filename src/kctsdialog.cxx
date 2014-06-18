@@ -248,6 +248,7 @@ Fl_Double_Window* make_TSdialog() {
     } // Fl_Menu_Bar* o
     { Fl_Tabs* o = new Fl_Tabs(0, 22, 500, 295);
       { Fl_Group* o = new Fl_Group(0, 45, 500, 255, _("Gen"));
+        o->hide();
         { Fl_Group* o = new Fl_Group(10, 55, 480, 67);
           o->box(FL_ENGRAVED_FRAME);
           { txtFirmware = new Fl_Output(90, 61, 54, 24, _("Firmware:"));
@@ -357,7 +358,6 @@ Fl_Double_Window* make_TSdialog() {
         o->end();
       } // Fl_Group* o
       { Fl_Group* o = new Fl_Group(0, 45, 500, 255, _("FreqRef"));
-        o->hide();
         { freqRef[0] = new Fl_Input(10, 50, 48, 24);
         } // Fl_Input* freqRef[0]
         { freqRef[1] = new Fl_Input(60, 50, 48, 24);
