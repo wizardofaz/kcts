@@ -10,10 +10,11 @@ make clean
 ./configure \
   $PKGCFG \
   $CROSSCFG \
-  --with-ptw32=/opt/mxe/usr/i686-pc-mingw32 \
-  PTW32_LIBS="-lpthread -lpcreposix -lpcre" \
+  --with-ptw32=$PREFIX/i686-w64-mingw32.static \
+  --enable-static \
+  PTW32_LIBS="-lpthread -lpcreposix -lpcre -lregex" \
   XMLRPC_C_CONFIG=$PREFIX/bin/xmlrpc-c-config \
-  FLTK_CONFIG=$PREFIX/bin/i686-pc-mingw32-fltk-config
+  FLTK_CONFIG=$PREFIX/bin/i686-w64-mingw32.static-fltk-config
 
 make
 
