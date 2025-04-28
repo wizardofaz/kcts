@@ -3,7 +3,7 @@ Makefile
 config.status
 configure
 src/config.h
-src/kcat
+src/kcts
 src/stamp-h1
 **/.deps/
 **/.dirstamp
