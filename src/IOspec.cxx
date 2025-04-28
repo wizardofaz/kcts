@@ -287,7 +287,7 @@ char cmdK_TUN1[] = {2,'v',0x06}; // Constant tune carrier on.
 
 char cmdK_PWR[] = {2,'W',0x00}; // Max power out 1 - 100 watts.
 
-char cmdK_XWGT[] = {2,'w',0x80}; // CW keyer weight, 00H to FFH
+char cmdK_XWGT[] = {2,'w',(char)0x80}; // CW keyer weight, 00H to FFH
 //				(00H = light, FFH = heavy).
 
 char cmdK_VOXL[] = {2,'X',0x00}; // VOX level, 00H to FFH (00H = off).
