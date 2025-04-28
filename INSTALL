@@ -18,6 +18,12 @@ should be sufficient to compile fl505 and install it under /usr/local:
   make
   make install    (you may need superuser privileges for installation)
 
+Note: If you have just cloned from a git repository, you may not have 
+   the configure script. It can be generated with 
+      autoreconf -f
+   If that fails, the error should show you what to do. It might need 
+      automake --add-missing
+
 The `install' target installs the executable, an icon, and a .desktop
 file.  After installation, an fl505 launcher should appear somewhere in
 your applications menu.
